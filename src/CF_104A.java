@@ -1,7 +1,10 @@
 import java.io.*;
 import java.util.*;
  
- 
+/**
+ * Testing my java skill 
+ * @author: Arif
+*/
 public class CF_104A{
     /* START OF I/O ROUTINE */
     // PrintWriter for faster output
