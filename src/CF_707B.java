@@ -5,7 +5,7 @@ import java.util.*;
  * 
  * @author arif_
  */
-public class MainExp{
+public class CF_707B{
     /* START OF I/O ROUTINE */
     // PrintWriter for faster output
     public static PrintWriter out;
@@ -27,7 +27,7 @@ public class MainExp{
                     e.printStackTrace();
                 }
             }
-            return st.nextToken().intern();
+            return st.nextToken();
         }
 
         int nextInt() {
@@ -49,18 +49,41 @@ public class MainExp{
             } catch (IOException e) {
                e.printStackTrace();
             }
-            return str.intern();
+            return str;
         }
     } // end of class MyInputReader
     /* END OF I/O ROUTINE */
-    
+        
     public static void main(String[] args) {
         MyInputReader in = new MyInputReader(System.in);
         out = new PrintWriter(new BufferedOutputStream(System.out));
 
-        boolean ans = true ^ true;
-        System.out.println(ans);
+        int n = in.nextInt();
+        int m = in.nextInt();
+        int k = in.nextInt();
         
+        boolean isFractory[] = new boolean[n+1];
+        int g[][] = new int[m+1][3];
+        int i, j, u, v, w;
+        
+        for(i=0; i<m; i++) {
+            g[i][0] = in.nextInt();
+            g[i][1] = in.nextInt();
+            g[i][2] = in.nextInt();
+        }
+        for(i=0; i<k; i++) {
+            j = in.nextInt();
+            isFractory[j] = true;
+        }
+        
+        int ans = Integer.MAX_VALUE;
+        for(i=0; i<m; i++) {
+            if(isFractory[g[i][0]] ^ isFractory[g[i][1]])
+                ans = Integer.min(ans, g[i][2]);
+        }
+        if(ans == Integer.MAX_VALUE) ans = -1;
+        
+        out.println(ans);
         out.close();
     } // end of method main()
 } // end of class Main

@@ -5,7 +5,7 @@ import java.util.*;
  * 
  * @author arif_
  */
-public class MainExp{
+public class CF_707C{
     /* START OF I/O ROUTINE */
     // PrintWriter for faster output
     public static PrintWriter out;
@@ -27,7 +27,7 @@ public class MainExp{
                     e.printStackTrace();
                 }
             }
-            return st.nextToken().intern();
+            return st.nextToken();
         }
 
         int nextInt() {
@@ -49,7 +49,7 @@ public class MainExp{
             } catch (IOException e) {
                e.printStackTrace();
             }
-            return str.intern();
+            return str;
         }
     } // end of class MyInputReader
     /* END OF I/O ROUTINE */
@@ -58,9 +58,24 @@ public class MainExp{
         MyInputReader in = new MyInputReader(System.in);
         out = new PrintWriter(new BufferedOutputStream(System.out));
 
-        boolean ans = true ^ true;
-        System.out.println(ans);
+        long n = in.nextLong();
         
+        if(n < 3) {
+            out.println(-1);
+        }
+        else {
+            long b, c;
+            if(n%2 == 1) {
+                b = (n*n - 1) / 2; 
+                c = (n*n + 1) / 2; 
+            }
+            else {
+                b = (n * n) / 4 - 1; 
+                c = (n * n) / 4 + 1; 
+            }
+            out.println(b + " " + c);
+        }
+
         out.close();
     } // end of method main()
 } // end of class Main
