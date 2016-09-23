@@ -1,12 +1,11 @@
 import java.io.*;
 import java.util.*;
-import javax.lang.model.element.Element;
  
 /**
  * 
  * @author arif_
  */
-public class MainExp{
+public class CF_719B{
     /* START OF I/O ROUTINE */
     // PrintWriter for faster output
     public static PrintWriter out;
@@ -28,7 +27,7 @@ public class MainExp{
                     e.printStackTrace();
                 }
             }
-            return st.nextToken().intern();
+            return st.nextToken();
         }
 
         int nextInt() {
@@ -50,7 +49,7 @@ public class MainExp{
             } catch (IOException e) {
                e.printStackTrace();
             }
-            return str.intern();
+            return str;
         }
     } // end of class MyInputReader
     /* END OF I/O ROUTINE */
@@ -59,10 +58,26 @@ public class MainExp{
         MyInputReader in = new MyInputReader(System.in);
         out = new PrintWriter(new BufferedOutputStream(System.out));
 
-        int i = 50;
-        char c = (char)(i);
-        out.println(c);
+        int n = in.nextInt();
+        StringBuilder s = new StringBuilder(in.next());
         
+        int red = 0, black = 0;
+        int ans = 0;
+        for(int i=0; i<n; i++) {
+            if(i%2==0 && s.charAt(i)!='r') red++;
+            if(i%2==1 && s.charAt(i)!='b') black++;
+        }
+        ans = Math.max(red, black);
+        
+        red = 0;
+        black = 0;
+        for(int i=0; i<n; i++) {
+            if(i%2==0 && s.charAt(i)!='b') black++;
+            if(i%2==1 && s.charAt(i)!='r') red++;
+        }
+        ans = Math.min(ans, Math.max(red, black));
+        
+        out.println(ans);
         out.close();
     } // end of method main()
 } // end of class Main

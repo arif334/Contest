@@ -1,12 +1,11 @@
 import java.io.*;
 import java.util.*;
-import javax.lang.model.element.Element;
  
 /**
  * 
  * @author arif_
  */
-public class MainExp{
+public class UVa_11386{
     /* START OF I/O ROUTINE */
     // PrintWriter for faster output
     public static PrintWriter out;
@@ -28,7 +27,7 @@ public class MainExp{
                     e.printStackTrace();
                 }
             }
-            return st.nextToken().intern();
+            return st.nextToken();
         }
 
         int nextInt() {
@@ -50,7 +49,7 @@ public class MainExp{
             } catch (IOException e) {
                e.printStackTrace();
             }
-            return str.intern();
+            return str;
         }
     } // end of class MyInputReader
     /* END OF I/O ROUTINE */
@@ -59,10 +58,28 @@ public class MainExp{
         MyInputReader in = new MyInputReader(System.in);
         out = new PrintWriter(new BufferedOutputStream(System.out));
 
-        int i = 50;
-        char c = (char)(i);
-        out.println(c);
-        
+        String text;
+        int n;
+        while((text = in.nextLine()) != null) {
+            if(text.isEmpty()) break;
+            n = Integer.parseInt(text);
+            long a[] = new long[n];
+            HashMap<Long, Long> hm = new HashMap<>();
+            for(int i=0; i<n; i++) {
+                a[i] = in.nextLong();
+                hm.put(a[i], hm.getOrDefault(a[i], 0L) + 1);
+            }
+            
+            long ans = 0;
+            for(int i=0; i<n; i++) {
+                for(int j=i+1; j<n; j++) {
+                    ans += hm.getOrDefault(a[i] + a[j], 0L);
+                }
+            }
+            
+            out.println(ans);
+        }
+
         out.close();
     } // end of method main()
 } // end of class Main

@@ -1,12 +1,12 @@
 import java.io.*;
+import java.math.BigInteger;
 import java.util.*;
-import javax.lang.model.element.Element;
  
 /**
  * 
  * @author arif_
  */
-public class MainExp{
+public class CF_715A{
     /* START OF I/O ROUTINE */
     // PrintWriter for faster output
     public static PrintWriter out;
@@ -28,7 +28,7 @@ public class MainExp{
                     e.printStackTrace();
                 }
             }
-            return st.nextToken().intern();
+            return st.nextToken();
         }
 
         int nextInt() {
@@ -50,7 +50,7 @@ public class MainExp{
             } catch (IOException e) {
                e.printStackTrace();
             }
-            return str.intern();
+            return str;
         }
     } // end of class MyInputReader
     /* END OF I/O ROUTINE */
@@ -59,10 +59,23 @@ public class MainExp{
         MyInputReader in = new MyInputReader(System.in);
         out = new PrintWriter(new BufferedOutputStream(System.out));
 
-        int i = 50;
-        char c = (char)(i);
-        out.println(c);
+        int n = in.nextInt();
+        long ans[] = new long[n+2];
+        ans[1] = 2;
+        for(int i=2; i<=n; i++) {
+            //long p = i * (i+1);
+            //p = (p * p) - ((i-1) * (i));
+            BigInteger p = new BigInteger(String.valueOf(i));
+            p = p.multiply(new BigInteger(String.valueOf(i+1)));
+            p = p.pow(2);
+            p = p.subtract(new BigInteger(String.valueOf((long)(i-1) * (long)i)));
+            p = p.divide(new BigInteger(String.valueOf(i)));
+            ans[i] = p.longValue();
+        }
         
+        for(int k=1; k<=n; k++)
+            out.println(ans[k]);
+
         out.close();
     } // end of method main()
 } // end of class Main
