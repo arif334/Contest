@@ -5,7 +5,7 @@ import java.util.*;
  * 
  * @author arif_
  */
-public class Main{
+public class UVa_11854{
     /* START OF I/O ROUTINE */
     // PrintWriter for faster output
     public static PrintWriter out;
@@ -57,7 +57,25 @@ public class Main{
     public static void main(String[] args) {
         MyInputReader in = new MyInputReader(System.in);
         out = new PrintWriter(new BufferedOutputStream(System.out));
-
+        
+        while (true) {            
+            int a = in.nextInt();
+            int b = in.nextInt();
+            int c = in.nextInt();
+            
+            if(a+b+c == 0) {
+                break;
+            }
+            
+            if(a*a + b*b == c*c
+              || a*a + c*c == b*b
+              || b*b + c*c == a*a) {
+                out.println("right");
+            }
+            else {
+                out.println("wrong");
+            }
+        }
 
         out.close();
     } // end of method main()
